@@ -1,8 +1,8 @@
 function WebSocketConnect() {
     if (location.protocol === "https:") {
-        var socketSource = new WebSocket("wss://" + location.host + webDavSettings.WebSocketPath);
+        var socketSource = new WebSocket("wss://" + location.host + "/" + webDavSettings.WebSocketPath);
     } else {
-        var socketSource = new WebSocket("ws://" + location.host + webDavSettings.WebSocketPath);
+        var socketSource = new WebSocket("ws://" + location.host + "/" + webDavSettings.WebSocketPath);
     }
 
 
