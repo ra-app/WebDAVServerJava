@@ -198,6 +198,9 @@ public class WebDavServlet extends HttpServlet {
                 logger.logError("Exception during request processing", e);
                 if (showExceptions)
                     e.printStackTrace(new PrintStream(davResponse.getOutputStream()));
+            } else {
+                System.out.println("WebDavServlet service error" + e.getMessage());
+
             }
         }
     }
