@@ -24,7 +24,12 @@ public class WebSocketServer {
         sessions.add(session);
         httpSession = (HttpSession) config.getUserProperties()
                 .get(HttpSession.class.getName());
-        ((WebDavEngine) httpSession.getAttribute("engine")).setWebSocketServer(this);
+
+                if ( httpSession.getAttribute("engine") != null ){
+                    ((WebDavEngine) httpSession.getAttribute("engine")).setWebSocketServer(this);
+                } else {
+                    System.out.println("On open no engine attribute");
+                }
     }
 
     @OnMessage
@@ -35,7 +40,11 @@ public class WebSocketServer {
     @OnClose
     public void onClose(Session session) {
         sessions.remove(session);
-        ((WebDavEngine) httpSession.getAttribute("engine")).setWebSocketServer(this);
+        if ( httpSession.getAttribute("engine") != null ){
+            ((WebDavEngine) httpSession.getAttribute("engine")).setWebSocketServer(this);
+        }else {
+            System.out.println("On close no engine attribute");
+        }
     }
 
     /**
